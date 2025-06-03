@@ -1,7 +1,7 @@
-import type {Metadata} from "next";
-import {Geist, Geist_Mono} from "next/font/google";
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Script from 'next/script'; // next/script'i import edin
+import Script from 'next/script';
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -28,14 +28,15 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-        <head>
-            {/* Matomo izleme kodunu next/script ile ekle */}
-            {MATOMO_URL && MATOMO_SITE_ID && (
-                <Script
-                    id="matomo-script"
-                    strategy="afterInteractive" // Sayfa yüklendikten sonra çalıştır
-                    dangerouslySetInnerHTML={{
-                        __html: `
+        <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+        {MATOMO_URL && MATOMO_SITE_ID && (
+            <Script
+                id="matomo-script"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                    __html: `
                 var _paq = window._paq = window._paq || [];
                 /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
                 _paq.push(['trackPageView']);
@@ -48,14 +49,9 @@ export default function RootLayout({
                   g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
                 })();
               `,
-                    }}
-                />
-            )}
-            <title>TD4P</title>
-        </head>
-        <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
+                }}
+            />
+        )}
         {children}
         </body>
         </html>
