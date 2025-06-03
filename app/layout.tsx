@@ -28,15 +28,13 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-        <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-        {MATOMO_URL && MATOMO_SITE_ID && (
-            <Script
-                id="matomo-script"
-                strategy="afterInteractive"
-                dangerouslySetInnerHTML={{
-                    __html: `
+        <head>
+            {MATOMO_URL && MATOMO_SITE_ID && (
+                <Script
+                    id="matomo-script"
+                    strategy="afterInteractive"
+                    dangerouslySetInnerHTML={{
+                        __html: `
                 var _paq = window._paq = window._paq || [];
                 /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
                 _paq.push(['trackPageView']);
@@ -49,9 +47,13 @@ export default function RootLayout({
                   g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
                 })();
               `,
-                }}
-            />
-        )}
+                    }}
+                />
+            )}
+        </head>
+        <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
         {children}
         </body>
         </html>
