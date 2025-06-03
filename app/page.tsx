@@ -15,7 +15,7 @@ export default function Home() {
                 void el.offsetWidth;
                 el.classList.add('bounce-in');
             }
-        }, 5000);
+        }, 8000);
 
         const opacityDelay = setTimeout(() => {
             const el = mockupRef.current;
@@ -39,7 +39,7 @@ export default function Home() {
     }, []);
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center py-8 px-4 bg-black text-white">
+        <div className="min-h-screen flex flex-col items-center justify-start md:justify-center pt-[8rem] md:pt-0 py-8 px-4 bg-black text-white">
             <div className="w-full max-w-screen-sm mb-8">
                 <div
                     className="text-lg sm:text-xl md:text-2xl font-semibold text-center bg-opacity-70 rounded-lg px-4 py-3">

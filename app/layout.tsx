@@ -1,6 +1,7 @@
 import type {Metadata} from "next";
 import {Geist, Geist_Mono} from "next/font/google";
 import "./globals.css";
+import Script from 'next/script'; // next/script'i import edin
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -14,8 +15,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
     title: "TD4P",
-    description: "TD4P Announcement"
+    description: "TD4P Announcement",
 };
+
+const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL;
+const MATOMO_SITE_ID = process.env.NEXT_PUBLIC_MATOMO_SITE_ID;
 
 export default function RootLayout({
                                        children,
@@ -24,6 +28,31 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
+        <head>
+            {/* Matomo izleme kodunu next/script ile ekle */}
+            {MATOMO_URL && MATOMO_SITE_ID && (
+                <Script
+                    id="matomo-script"
+                    strategy="afterInteractive" // Sayfa yüklendikten sonra çalıştır
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                var _paq = window._paq = window._paq || [];
+                /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+                _paq.push(['trackPageView']);
+                _paq.push(['enableLinkTracking']);
+                (function() {
+                  var u="${MATOMO_URL}";
+                  _paq.push(['setTrackerUrl', u+'matomo.php']);
+                  _paq.push(['setSiteId', '${MATOMO_SITE_ID}']);
+                  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                  g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+                })();
+              `,
+                    }}
+                />
+            )}
+            <title>TD4P</title>
+        </head>
         <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
