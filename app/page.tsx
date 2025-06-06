@@ -43,8 +43,7 @@ export default function Home() {
             <div className="w-full max-w-screen-sm mb-8">
                 <div
                     className="text-lg sm:text-xl md:text-2xl font-semibold text-center bg-opacity-70 rounded-lg px-4 py-3">
-                    Şimdi bilgisayarınızı açın,<br className="sm:hidden"/> <b>td4p.thy.com</b> adresine girin ve nelerle
-                    karşılaşacağınızı görün!
+                    Turn on your computer, visit <br className="sm:hidden"/> <b>burakgul.com.tr</b>, and discover what’s waiting for you!
                 </div>
             </div>
 
