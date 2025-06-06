@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "TD4P",
-    description: "TD4P Announcement",
+    title: "AdFocus",
+    description: "AdFocus Demo Page",
 };
 
 const MATOMO_URL = process.env.NEXT_PUBLIC_MATOMO_URL;
